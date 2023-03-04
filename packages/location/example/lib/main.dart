@@ -6,7 +6,12 @@ import 'package:location_example/listen_location.dart';
 import 'package:location_example/permission_status.dart';
 import 'package:location_example/service_enabled.dart';
 
-void main() => runApp(const MyApp());
+import 'screen/background_location_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -36,19 +41,28 @@ class MyHomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const <Widget>[
-            SizedBox(height: 16),
-            PermissionStatusWidget(),
-            Divider(height: 32),
-            ServiceEnabledWidget(),
-            Divider(height: 32),
-            GetLocationWidget(),
-            Divider(height: 32),
-            ListenLocationWidget(),
-            Divider(height: 32),
-            ChangeSettings(),
-            Divider(height: 32),
-            ChangeNotificationWidget()
+          children: [
+            const SizedBox(height: 16),
+            const PermissionStatusWidget(),
+            const Divider(height: 32),
+            const ServiceEnabledWidget(),
+            const Divider(height: 32),
+            const GetLocationWidget(),
+            const Divider(height: 32),
+            const ListenLocationWidget(),
+            const Divider(height: 32),
+            const ChangeSettings(),
+            const Divider(height: 32),
+            const ChangeNotificationWidget(),
+            const Divider(height: 32),
+            ElevatedButton(
+                onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const BackgroundSerivePage(),
+                      ),
+                    ),
+                child: const Text('Background location Screen'))
           ],
         ),
       ),
